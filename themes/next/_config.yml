@@ -152,7 +152,7 @@ exturl: false
 # External url should start with http:// or https://
 menu:
   home: / || home
-  about: /about/ || user
+  # 读书: /learn/ || book
   tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
@@ -1065,9 +1065,9 @@ vendors:
   # Internal version: 4.6.2
   # See: https://fontawesome.com
   # Example:
-  # fontawesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
+  # fontawesome: //cdn.jsdelivr.net/npm/font-awesome@5/css/font-awesome.min.css
   # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css
-  fontawesome:
+  # fontawesome: use.fontawesome.com/releases/v5.7.2/js/all.js
 
   # Internal version: 2.10.4
   # See: https://www.algolia.com
