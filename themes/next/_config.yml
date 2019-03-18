@@ -641,8 +641,8 @@ gitalk:
   enable: true
   github_id:  shufankang
   repo: blog_comments
-  client_id:  Iv1.aa7c2102c6c539b3
-  client_secret:  84cb2ba53545c540fcbf09fd656487889726f69f # Github Application Client Secret
+  client_id:  b819a78d06b547280754
+  client_secret:  efebdb43263e8e340983a678381e50e8b3d49c0e # Github Application Client Secret
   admin_user:  shufankang # GitHub repo owner and collaborators, only these guys can initialize github issues
   distraction_free_mode: true # Facebook-like distraction free mode
   # Gitalk's display language depends on user's browser or system environment
