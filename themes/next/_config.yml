@@ -116,6 +116,8 @@ github_banner:
   permalink: https://github.com/shufankang
   title: Follow me on GitHub
 
+auto_dir_categorize:
+	enable: true
 
 # ---------------------------------------------------------------
 # SEO Settings
