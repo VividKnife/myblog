@@ -2,9 +2,7 @@
 title: Clean Architecture Part1
 date: 2019-03-18 19:36:44
 tags:
-  - 读书
   - 面向对象
-  - 依赖倒置
 categories:
   - 读书
   - Clean Architecture

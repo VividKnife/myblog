@@ -2,7 +2,7 @@
 title: Clean Architecture Part 2
 date: 2019-03-19 14:11:32
 tags:
-  - Design Principle
+  - 设计原则
 categories:
   - 读书
   - Clean Architecture
