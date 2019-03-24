@@ -1,5 +1,5 @@
 ---
-title: Clean Architecture Part 4
+title: 模块耦合的三原则 - Clean Architecture Part 4
 date: 2019-03-23 18:55:58
 tags:
   - 设计原则
@@ -8,9 +8,9 @@ categories:
   - Clean Architecture
 ---
 
-## 模块耦合的三原则(Component Coupling)
+上次我们学习了如何决定一个类属于哪个模块，这次我们将学习如何处理模块之间的关系。
 
-### 非循环依赖原则(The Acyclic Dependencies Principle)
+## 非循环依赖原则(The Acyclic Dependencies Principle)
 
 ```
 Allow no cycles in the component dependency graph.
@@ -18,25 +18,27 @@ Allow no cycles in the component dependency graph.
 
 在一个系统中，模块之间的依赖关系图中不应该有循环。
 
-#### 模块的依赖
+<!-- more -->
+
+### 模块的依赖
 
 如果一个模块A中引用到了模块B中的类/方法/API，我们就称 A 依赖于 B。 为了简化表达我们用：A->B。
 
 例如Java中的**import**， C/C++中的**#include**, 微服务中的**API**。
 
-#### 模块的循环依赖
+### 模块的循环依赖
 
 两个或者两个以上的模块之前的依赖关系出现了循环。
 
 例如 A 依赖于 B， B 依赖于 C， C 依赖于 A。 这就是一个循环依赖。A->B->C->A。
 
-#### 为什么循环依赖是不对的？
+### 为什么循环依赖是不对的？
 
 假如你在上面提到ABC循环依赖的系统中工作。 当你对C进行了修改并测试之后，发现没有什么问题。由于**B依赖于C**，B也进行了对应的就改。同理，由于**A依赖于B**， A也进行了适当的修改。如果在一个非循环依赖的系统中，此时工作已经完成了。但是，在这个循环依赖的系统中，由于**C还依赖于A**，如果对A进行修改的工作人员错误的修改了**C依赖于A的代码**，那么此时，对C进行的测试不再有效了，必须对整个系统在进行一个完整的测试才能保证这次修改的正确性。
 
 再举个例子，在一个微服务系统中，模块A和B直接相互依赖。由于模块A和B分别部署在不同的服务器上，你永远无法在不造成客户影响的情况下对这个系统中的模块进行不向后兼容的修改。
 
-#### 如何打破循环依赖
+### 如何打破循环依赖
 
 1. 利用依赖倒置原则。
 
@@ -56,7 +58,7 @@ C为Entities， A为Authorizer
 既然我们知道了C不应该依赖于A，那么我们就把C依赖于A的部分单独提取出来创建一个新的模块D。
 此时我们的依赖关系就变成了： A->B->C->D<-A
 
-### 稳定依赖原则(The Stable Dependencies Principle)
+## 稳定依赖原则(The Stable Dependencies Principle)
 
 ```
 Depend in the direction of stability.
@@ -65,7 +67,7 @@ Depend in the direction of stability.
 
 一个应该容易被修改的模块一定**不能被**难以修改的模块依赖。当一个难以修改的模块A依赖于一个模块B时，模块B也会变得难以修改。
 
-#### 稳定的模块
+### 稳定的模块
 
 * 当一个模块**被很多模块依赖**时，这个模块就会变得很稳定。因为它需要对所有依赖于它的模块们负责。
 
@@ -76,7 +78,7 @@ A -> X, B -> X, C -> X， X无法随便被修改，因为ABC都依赖于它，�
 Y -> A, Y -> B, Y -> C， Y可能会需要经常进行修改，因为ABC任意一个的改动都可能造成Y的修改。
 
 
-#### 如何量化稳定性？
+### 如何量化稳定性？
 
 Fan-in： Incoming dependencies: 一个模块所**被依赖**的模块数量。有多少个模块依赖于这个模块。
 
@@ -89,7 +91,7 @@ I: Instability: 模块的不稳定性。 I = Fan-out/(Fan-in + Fan-out)
 
 **稳定依赖的根本就是： 沿着依赖的方向 I 应该逐渐减少 (更加稳定)**
 
-### 稳定抽象原则(The Stable Abstractions Principle)
+## 稳定抽象原则(The Stable Abstractions Principle)
 
 ```
 A commponent should be as abstract as it is stable. 
@@ -101,7 +103,7 @@ A commponent should be as abstract as it is stable.
 
 这样的话，一个稳定的模块，由于它是抽象的，那么它就很容易被通过继承来变得可扩展。
 
-#### 如何量化抽象性？
+### 如何量化抽象性？
 
 Nc：一个模块内具体类的数量。
 
@@ -109,7 +111,7 @@ Na：一个模块内抽象类和接口的数量。
 
 A；Abstractness：抽象性：A = Na / Nc
 
-#### 对模块的量化属性进行分析
+### 对模块的量化属性进行分析
 
 让我们使用 I (模块的不稳定性) 和 A (模块的抽象性) 来进行图表分析：
 
@@ -125,6 +127,6 @@ A；Abstractness：抽象性：A = Na / Nc
 
 当 D 越接近 0，代表着一个模块越合理。
 
-### 结论
+## 结论
 
 当我们在工作中发现一个系统有问题但却不确定那个模块出现问题时，不妨用量化分析。

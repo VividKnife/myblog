@@ -1,5 +1,5 @@
 ---
-title: Clean Architecture Part 2
+title: SOLID 设计原则 - Clean Architecture Part 2
 date: 2019-03-19 14:11:32
 tags:
   - 设计原则
@@ -8,6 +8,8 @@ categories:
   - Clean Architecture
 ---
 
+这次我们将简单学习一下著名的SLOLID设计原则。
+
 ## 单一责任原则(The Single Responsibility Principle)
 
 ```
@@ -15,6 +17,7 @@ categories:
 ```
 
 Never change a same source file for different reasons, for different purpose.
+<!-- more -->
 
 ## 开闭原则(The Open Closed Principle)
 

@@ -1,5 +1,5 @@
 ---
-title: Clean Architecture Part 1
+title: 开篇 - Clean Architecture Part 1
 date: 2019-03-18 19:36:44
 tags:
   - 面向对象
@@ -15,6 +15,8 @@ categories:
 最初开始于计算机IO设备的插件构建，对于计算机来说一个输入设备只是一个插件，只要这个输入设备提供了标准的接口，我们就可以随意更换。
 
 面向对象编程使得插件构架可以在任何地方使用。这就是我们常说的面向接口(Interface)编程。
+
+<!-- more -->
 
 ### 依赖倒置(Dependency Inversion)
 

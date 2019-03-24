@@ -1,5 +1,5 @@
 ---
-title: Clean Architecture Part 3
+title: 模块聚合的三原则 - Clean Architecture Part 3
 date: 2019-03-21 21:50:20
 tags:
   - 设计原则
@@ -8,7 +8,7 @@ categories:
   - Clean Architecture
 ---
 
-## 模块(Components)
+## 什么是模块？
 
 ``` 
 Components are the units of deployment. 
@@ -21,7 +21,9 @@ They are the smallest entities that can be deployed as part of a system.
 
 ## 模块聚合(Components Cohesion)
 
-那么如果决定一个类应该属于哪个模块呢？
+那么如何决定一个类应该属于哪个模块呢？
+
+<!-- more -->
 
 ### 模块聚合的三个原则
 
