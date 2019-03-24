@@ -21,6 +21,7 @@ categories:
 ## 同步与异步
 
 **同步(Sync)**: 如果在调用函数的时候，当这个函数返回时，你已经拿到了预期的结果，那么这个函数就是同步的。
+<!-- more -->
 
 ``` javascript
 console.log('Hello, world!');
