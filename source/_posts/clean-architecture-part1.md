@@ -1,5 +1,5 @@
 ---
-title: Clean Architecture Part1
+title: Clean Architecture Part 1
 date: 2019-03-18 19:36:44
 tags:
   - 面向对象

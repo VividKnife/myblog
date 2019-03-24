@@ -1,5 +1,5 @@
 ---
-title: Clean Architecture Part3
+title: Clean Architecture Part 3
 date: 2019-03-21 21:50:20
 tags:
   - 设计原则
@@ -45,7 +45,7 @@ Separate into different components those classes that change at different times 
 将会同时并且因为同样的原因进行修改的类放入一个模块中。
 将会在**不同时期**因为**不同的原因**进行修改的类放入不同的模块中。
 
-#### 3. CRP(The Common Reuse Principle)
+#### 3. CRP (The Common Reuse Principle)
 ```
 Don’t force users of a component to depend on things they don’t need.
 ```
