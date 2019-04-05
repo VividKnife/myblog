@@ -1,5 +1,5 @@
 ---
-title: "难测对象模式 - Clean Architecture Part 9"
+title: "难测对象模式 - Clean Architecture Part 10"
 date: 2019-04-04 20:31:30
 tags:
   - 构架
