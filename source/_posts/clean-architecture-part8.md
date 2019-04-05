@@ -1,5 +1,5 @@
 ---
-title:  实体与用例 - Clean Architecture Part 8
+title: "实体与用例 - Clean Architecture Part 8"
 date: 2019-04-01 21:26:33
 tags:
   - 构架
