@@ -79,15 +79,17 @@ scrollRequest.scroll("5m");
 es.scroll(scrollRequest);
 ```
 
-search_after 的工作原理是将上个请求结果中最后一项的sortValues包含在下个请求的search_after参数中。并且两个搜索请求需有相同的排序方式。轻量级，快速有效  
+search_after 的工作原理是将上个请求结果中最后一项的sortValues包含在下个请求的search_after参数中。并且两个搜索请求需有相同的排序方式和Query。轻量级，快速有效  
 
 ```java
 // 当使用search_after是需要确保至少有一个unique的sort key。
 searchSourceBuilder.sort(SortBuilders.fieldSort("uuid"))
 ...
 Object[] sortValues = result.getHits().getHits().last().getSortValues();
-// 这个searchRequest 需要与前一个searchRequest有相同的sort
+// 这个searchRequest 必需要与前一个searchRequest有相同的sort和query才能得到期待的结果
 searchRequest.searchAfter(sortValues);
 ```
 
-## TODO: 如果search_after第二页query变了会发生什么？
+-----
+* A useful [playground tool](https://www.katacoda.com/courses/elasticsearch/playground)
+* Getting Started by [index sample data](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/getting-started-index.html) 
