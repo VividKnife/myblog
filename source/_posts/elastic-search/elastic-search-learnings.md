@@ -90,6 +90,13 @@ Object[] sortValues = result.getHits().getHits().last().getSortValues();
 searchRequest.searchAfter(sortValues);
 ```
 
+## 其他小tips
+
+TotalHits: 为了节省资源，ES默认最多查询到10，000个结果，所以TotalHits默认最多为10，000。如果一定要要求ES搜索完整全部结果并且返回总量需要使用以下参数
+```java
+searchSourceBuilder.trackTotalhits(true);
+```
+
 -----
 * A useful [playground tool](https://www.katacoda.com/courses/elasticsearch/playground)
 * Getting Started by [index sample data](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/getting-started-index.html) 
