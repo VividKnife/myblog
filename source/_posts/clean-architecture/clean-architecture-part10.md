@@ -37,9 +37,9 @@ DAO是一个包含所有业务逻辑所需数据读写方法的接口。这个�
 
 * 你可以使用部分隔离的方法，按照界限分离的方式开发，但是只放在同一个模块中。
 * Strategy Pattern
-<img src="/clean-architecture-part10/sp.png" width="500" height="300" title="Strategy Pattern">
+<img src="/clean-architecture/clean-architecture-part10/sp.png" width="500" height="300" title="Strategy Pattern">
 * Facade Pattern
-<img src="/clean-architecture-part10/fp.png" width="500" height="300" title="Facade Pattern">
+<img src="/clean-architecture/clean-architecture-part10/fp.png" width="500" height="300" title="Facade Pattern">
 
 ## 入口程序模块（The Main Component）
 

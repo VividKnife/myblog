@@ -45,11 +45,11 @@ Allow no cycles in the component dependency graph.
 在上面描述A->B->C->A中：假设 C依赖于A的关系如下：
 C为Entities， A为Authorizer
 
-<img src="/clean-architecture-part4/c->a.png" width="500" height="300" title="C 依赖于 A">
+<img src="/clean-architecture/clean-architecture-part4/c->a.png" width="500" height="300" title="C 依赖于 A">
 
 通过利用依赖倒置原则，我们在Entities模块内创建一个叫做Permissions的接口，然后让A依赖于C。
 
-<img src="/clean-architecture-part4/dip.png" width="500" height="300" title="C 依赖于 A">
+<img src="/clean-architecture/clean-architecture-part4/dip.png" width="500" height="300" title="C 依赖于 A">
 
 然后我们系统的依赖关系就变成了A->B->C<-A。此时你便可以安全的对A进行修改而不用担心C被影响了。而且更加吸引人的一点是，**对A进行的修改将不需要其他任何部分的改动**。
 
@@ -115,7 +115,7 @@ A；Abstractness：抽象性：A = Na / Nc
 
 让我们使用 I (模块的不稳定性) 和 A (模块的抽象性) 来进行图表分析：
 
-<img src="/clean-architecture-part4/a-i.png" width="500" height="300" title="量化分析">
+<img src="/clean-architecture/clean-architecture-part4/a-i.png" width="500" height="300" title="量化分析">
 
 (0,0) 代表着一个模块只有具体的类并且它非常的稳定。这样的情况对于开发人员来说是非常痛苦的，具体的类导致无法通过继承来扩展，高度的稳定性导致其难以改变。
 

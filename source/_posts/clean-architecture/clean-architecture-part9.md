@@ -14,7 +14,7 @@ categories:
 * 不依赖于任何框架，数据库，UI，服务器
 * 在没有UI，数据库，服务器的情况下可以测试
 
-<img src="/clean-architecture-part9/clean-architecture.png" width="500" height="300" title="CleanArchitecture">
+<img src="/clean-architecture/clean-architecture-part9/clean-architecture.png" width="500" height="300" title="CleanArchitecture">
 
 <!-- more -->
 ```
@@ -49,5 +49,5 @@ Source code dependencies must point only inward, toward higher-level policies.
 ## 例子
 注意在以下例子中，所有跨越边界的依赖都是向内的。
 
-<img src="/clean-architecture-part9/web.png" width="500" height="300" title="web" />
+<img src="/clean-architecture/clean-architecture-part9/web.png" width="500" height="300" title="web" />
 

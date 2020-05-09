@@ -42,12 +42,12 @@ What is wanted here is something like the following substitution property: If fo
 ```
 Clients should not be forced to depend upon interfaces that they do not use.
 ```
-<img src="/clean-architecture-part2/lsp-bad.png" width="500" height="300" title="Bad Design">
+<img src="/clean-architecture/clean-architecture-part2/lsp-bad.png" width="500" height="300" title="Bad Design">
 
 
 在这个设计里，user1只会使用op1但是却要依赖于整个ops。当任意一个op的方法改动时，所有user被迫从新编译和部署。
 
-<img src="/clean-architecture-part2/lsp-good.png" width="500" height="300" title="Good Design">
+<img src="/clean-architecture/clean-architecture-part2/lsp-good.png" width="500" height="300" title="Good Design">
 
 在这个新的设计里，每个user只依赖于自己的方法，并且ops保留了原有的所有功能。
 
@@ -62,6 +62,6 @@ A. 高层模块不应该依赖于低层模块，二者都应该依赖于抽象�
 
 B. 抽象不应该依赖于具体实现细节，而具体实现细节应该依赖于抽象。
 
-<img src="/clean-architecture-part2/dip.png" width="500" height="300" title="DIP">
+<img src="/clean-architecture/clean-architecture-part2/dip.png" width="500" height="300" title="DIP">
 
 在这个例子中，高层的Application只依赖于抽象的Service和抽象的ServiceFactory。当Factory的具体实现和Service的具体实现发生改动的时候，Application并不需要发生变化。

@@ -14,7 +14,7 @@ categories:
 
 例如：
 
-<img src="/clean-architecture-part7/plug-in.png" width="500" height="300" title="界限">
+<img src="/clean-architecture/clean-architecture-part7/plug-in.png" width="500" height="300" title="界限">
 <!-- more -->
 
 在这样的构架下，数据库和GUI于核心业务逻辑划清了界限，所以数据库和GUI相对于业务逻辑只是可替换的插件。

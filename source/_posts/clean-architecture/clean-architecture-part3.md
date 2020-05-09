@@ -56,4 +56,4 @@ Don’t force users of a component to depend on things they don’t need.
 
 **一个模块不应该由于其不依赖的代码而需要重新编译/测试/发布**
 
-<img src="/clean-architecture-part3/components-cohesion-principles.png" width="500" height="300" title="Cochesion principles tension">
+<img src="/clean-architecture/clean-architecture-part3/components-cohesion-principles.png" width="500" height="300" title="Cochesion principles tension">
