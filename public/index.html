@@ -366,6 +366,525 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sourberrycat.com/reading/non-blocking-io/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="酸梅猫">
+      <meta itemprop="description" content="一只西雅图的程序员">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="酸梅猫的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/reading/non-blocking-io/" class="post-title-link" itemprop="url">阻断与非阻断I/O</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-11 23:02:30 / 修改时间：07:25:16" itemprop="dateCreated datePublished" datetime="2020-08-11T23:02:30Z">2020-08-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作原理/" itemprop="url" rel="index"><span itemprop="name">工作原理</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="I-O-基础"><a href="#I-O-基础" class="headerlink" title="I/O 基础"></a>I/O 基础</h2><p>简单介绍一下I/O的基本工作方式</p>
+<ol>
+<li>你的程序通过“syscall()”请求操作系统的内核去做一个I/O操作。</li>
+<li>一个”syscall()”是阻断的，你的程序需要等待内核返回才能继续执行你的代码。</li>
+<li>内核执行底层的I/O操作，大多在硬件层面，执行时间根据的硬件的速度而变化。</li>
+</ol>
+<img src="/reading/non-blocking-io/syscall.png" title="Syscall">
+<h2 id="阻断型I-O"><a href="#阻断型I-O" class="headerlink" title="阻断型I/O"></a>阻断型I/O</h2><p>大多语言，比如说Java，Python的I/O调用的阻断型的，你的程序需要等待I/O返回之后才能继续后面的工作。当有高并发的需求的时候，大量的线程需要进行大量的上下文切换。就会导致浪费大量CPU资源。</p>
+<h2 id="非阻断型I-O"><a href="#非阻断型I-O" class="headerlink" title="非阻断型I/O"></a>非阻断型I/O</h2><p>Nodejs的独特的事件循环使得他可以方便的运行非阻断型I/O。每一个I/O请求都会作为一个消息发送在事件循环中，Nodejs会继续执行其他代码直到这个I/O请求结束之后通过callback返回结果。</p>
+<p>由于这个独特的设计是的Nodejs在处理高并发，I/O为主的程序中发挥极大的功效。当传统的网络服务器(线程型)能处理4000并发的时候，Nodejs可以处理1百万并发，和大约60万并发websockets的连接。</p>
+<p>但是由于Nodejs基于V8单线程的原因，他不适合处理高运算量的代码，一个高运算量的循环就可以使得整个程序瘫痪。</p>
+<p>基于Nodejs的这些特性，以下是一些比较适合他的应用场景：</p>
+<ul>
+<li>聊天软件</li>
+<li>读写NoSQL数据库的API(MongoDB)</li>
+<li>队列/消息请求</li>
+<li>数据流</li>
+<li>代理(Proxy)</li>
+</ul>
+<p>更多阅读：<br><a href="https://medium.com/the-node-js-collection/why-the-hell-would-you-use-node-js-4b053b94ab8e" target="_blank" rel="noopener">Why the Hell Would You Use Node.js
+</a><br><a href="https://www.toptal.com/back-end/server-side-io-performance-node-php-java-go" target="_blank" rel="noopener">Server-side I/O Performance: Node vs. PHP vs. Java vs. Go</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sourberrycat.com/reading/process-thread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="酸梅猫">
+      <meta itemprop="description" content="一只西雅图的程序员">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="酸梅猫的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/reading/process-thread/" class="post-title-link" itemprop="url">进程，线程和协程</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-11 21:02:30 / 修改时间：07:25:09" itemprop="dateCreated datePublished" datetime="2020-08-11T21:02:30Z">2020-08-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作原理/" itemprop="url" rel="index"><span itemprop="name">工作原理</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="进程-process"><a href="#进程-process" class="headerlink" title="进程(process)"></a>进程(process)</h2><p>进程拥有独立的内存，寻址空间和寄存器。进程是直接被内核(kernel)管理的，一般每一个程序都拥有自己的线程。他们相互独立确保不会干扰彼此的工作。</p>
+<p>在一个多进程的计算机中，一个CPU需要同时运行多个进。这是通过中断当前进程，然后保存当前进程中的内存，寄存器，PC(program counter), 变量表等，然后让下一个进程来运行，我们称之为上下文切换(context switch)。上下文切换是相对消耗运算量的，尤其是有很多进程并发的时候，频繁的上下文切换将会占用大量的CPU资源。</p>
+<h2 id="线程-thread"><a href="#线程-thread" class="headerlink" title="线程(thread)"></a>线程(thread)</h2><p>线程是一种轻量级进程，线程直接可以共享内存，但执行不同的代码，所以各自有自己的栈内存和寄存器等。</p>
+<p>线程一般由应用软件来创建，线程之间的上下文切换也是类似于进程，唯一的区别是会保留虚拟内存。</p>
+<h2 id="协程-coroutine-goroutine"><a href="#协程-coroutine-goroutine" class="headerlink" title="协程(coroutine/goroutine)"></a>协程(coroutine/goroutine)</h2><p>进程和线程都是内核(kernel)级别的中断和上下文切换。他们都有在大量多线程/进程的情况中消耗CPU资源的问题。</p>
+<p>协程将内核级别的上下文切换转换到了应用程序内。这样做的好处的通过应用程序的协调，避免的大量的内核上下文切换。而且很多协程中都使用自愿退出的模式，避免的大量的需要上下文切换的情况。</p>
+<p>例如：RxJava, Kotlin coroutines, Go(goroutines)</p>
+<p>更多阅读：<br><a href="https://medium.com/traveloka-engineering/cooperative-vs-preemptive-a-quest-to-maximize-concurrency-power-3b10c5a920fe" target="_blank" rel="noopener">Cooperative vs. Preemptive: a quest to maximize concurrency power</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sourberrycat.com/elastic-search/elastic-search-learnings/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="酸梅猫">
+      <meta itemprop="description" content="一只西雅图的程序员">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="酸梅猫的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/elastic-search/elastic-search-learnings/" class="post-title-link" itemprop="url">Elastic Search 搜索</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-09 19:36:44 / 修改时间：10:28:47" itemprop="dateCreated datePublished" datetime="2020-05-09T19:36:44Z">2020-05-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="如何搜索"><a href="#如何搜索" class="headerlink" title="如何搜索"></a>如何搜索</h2><p>这里我们会尽量用java作为例子来解释如何使用ElasticSearch。<a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-search.html" target="_blank" rel="noopener">ES HighLevel REST Client</a></p>
+<h3 id="BoolQuery-的用法与特性"><a href="#BoolQuery-的用法与特性" class="headerlink" title="BoolQuery 的用法与特性"></a>BoolQuery 的用法与特性</h3><p>BoolQuery 作为一个主要的Query结构一般用于整个Query的根。Query的结果会根据score默认排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">searchSourceBuilder.query(QueryBuilders.boolQueryBuilder()); </span><br><span class="line">searchRequest.source(searchSourceBuilder);</span><br></pre></td></tr></table></figure>
+<p>BoolQuery 拥有4个不同的Query类型。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 必须匹配，匹配会增加score。MatchQuery 这里表示"名字"必须包含“大卫”或者“David”其中一个, 多个匹配会增加其结果的score。</span></span><br><span class="line">boolQueryBuilder.must(QueryBuilders.matchQuery(<span class="string">"名字"</span>, <span class="string">"大卫 David"</span>)) </span><br><span class="line"><span class="comment">// 每一个query类型都可以添加多个子Query，其关系是“AND”。并且可以是BoolQuery</span></span><br><span class="line">boolQueryBuilder.must(QueryBuilders.boolQuery()) </span><br><span class="line"><span class="comment">// 必须匹配，匹配不影响score。TermsQuery 这里表示"id"必须等于“123”或者“321”</span></span><br><span class="line">boolQueryBuilder.filter(QueryBuilders.termsQuery(<span class="string">"id"</span>, <span class="string">"123"</span>， <span class="string">"321"</span>))</span><br><span class="line"><span class="comment">// 非必须匹配，匹配增加score。</span></span><br><span class="line">boolQueryBuilder.should()</span><br><span class="line"><span class="comment">// 设定最少匹配“should”的数量，如果没有规定“must”/“filter”默认值是1，有的话默认值是0</span></span><br><span class="line">boolQueryBuilder.minimalShouldMatch(<span class="number">1</span>) </span><br><span class="line"><span class="comment">// 必须不包含，不影响score。</span></span><br><span class="line">boolQueryBuilder.must_not()</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/elastic-search/elastic-search-learnings/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://sourberrycat.com/clean-architecture/clean-architecture-part11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -617,7 +1136,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-09 03:45:46" itemprop="dateModified" datetime="2020-05-09T03:45:46Z">2020-05-09</time>
+                <time title="修改时间：2020-05-09 03:49:18" itemprop="dateModified" datetime="2020-05-09T03:49:18Z">2020-05-09</time>
               
             
           </span>
@@ -691,8 +1210,8 @@
 </ul>
 <ul>
 <li>你可以使用部分隔离的方法，按照界限分离的方式开发，但是只放在同一个模块中。</li>
-<li>Strategy Pattern<br><img src="/clean-architecture-part10/sp.png" width="500" height="300" title="Strategy Pattern"></li>
-<li>Facade Pattern<br><img src="/clean-architecture-part10/fp.png" width="500" height="300" title="Facade Pattern"></li>
+<li>Strategy Pattern<br><img src="/clean-architecture/clean-architecture-part10/sp.png" width="500" height="300" title="Strategy Pattern"></li>
+<li>Facade Pattern<br><img src="/clean-architecture/clean-architecture-part10/fp.png" width="500" height="300" title="Facade Pattern"></li>
 </ul>
 <h2 id="入口程序模块（The-Main-Component）"><a href="#入口程序模块（The-Main-Component）" class="headerlink" title="入口程序模块（The Main Component）"></a>入口程序模块（The Main Component）</h2><ul>
 <li>入口程序依赖于所有的部分，它知道所有模块的存在。</li>
@@ -818,7 +1337,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-09 03:45:46" itemprop="dateModified" datetime="2020-05-09T03:45:46Z">2020-05-09</time>
+                <time title="修改时间：2020-05-09 03:49:08" itemprop="dateModified" datetime="2020-05-09T03:49:08Z">2020-05-09</time>
               
             
           </span>
@@ -884,7 +1403,7 @@
 <li>不依赖于任何框架，数据库，UI，服务器</li>
 <li>在没有UI，数据库，服务器的情况下可以测试</li>
 </ul>
-<p><img src="/clean-architecture-part9/clean-architecture.png" width="500" height="300" title="CleanArchitecture"></p>
+<p><img src="/clean-architecture/clean-architecture-part9/clean-architecture.png" width="500" height="300" title="CleanArchitecture"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1201,7 +1720,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-09 03:45:46" itemprop="dateModified" datetime="2020-05-09T03:45:46Z">2020-05-09</time>
+                <time title="修改时间：2020-05-09 03:48:52" itemprop="dateModified" datetime="2020-05-09T03:48:52Z">2020-05-09</time>
               
             
           </span>
@@ -1264,7 +1783,7 @@
           <p>构架的关键是解耦，尤其是对一些“重要”决定的解耦。在软件开发初期，经常会有一些看似很重要但是与业务逻辑其实没有关系的决定，例如框架，数据库，服务器等。一个优秀的系统是不会依赖于这些决定的。</p>
 <p>我们要对这些于业务逻辑无关的“重要”决定划清界限。</p>
 <p>例如：</p>
-<p><img src="/clean-architecture-part7/plug-in.png" width="500" height="300" title="界限"><br>
+<p><img src="/clean-architecture/clean-architecture-part7/plug-in.png" width="500" height="300" title="界限"><br>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1686,571 +2205,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://sourberrycat.com/clean-architecture/clean-architecture-part4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="酸梅猫">
-      <meta itemprop="description" content="一只西雅图的程序员">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="酸梅猫的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/clean-architecture/clean-architecture-part4/" class="post-title-link" itemprop="url">模块耦合的三原则 - Clean Architecture Part 4</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-23 18:55:58" itemprop="dateCreated datePublished" datetime="2019-03-23T18:55:58Z">2019-03-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-09 03:45:46" itemprop="dateModified" datetime="2020-05-09T03:45:46Z">2020-05-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书/" itemprop="url" rel="index"><span itemprop="name">读书</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书/Clean-Architecture/" itemprop="url" rel="index"><span itemprop="name">Clean Architecture</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>上次我们学习了如何决定一个类属于哪个模块，这次我们将学习如何处理模块之间的关系。</p>
-<h2 id="非循环依赖原则-The-Acyclic-Dependencies-Principle"><a href="#非循环依赖原则-The-Acyclic-Dependencies-Principle" class="headerlink" title="非循环依赖原则(The Acyclic Dependencies Principle)"></a>非循环依赖原则(The Acyclic Dependencies Principle)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Allow no cycles in the component dependency graph.</span><br></pre></td></tr></table></figure>
-<p>在一个系统中，模块之间的依赖关系图中不应该有循环。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/clean-architecture/clean-architecture-part4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://sourberrycat.com/clean-architecture/clean-architecture-part3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="酸梅猫">
-      <meta itemprop="description" content="一只西雅图的程序员">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="酸梅猫的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/clean-architecture/clean-architecture-part3/" class="post-title-link" itemprop="url">模块聚合的三原则 - Clean Architecture Part 3</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-21 21:50:20" itemprop="dateCreated datePublished" datetime="2019-03-21T21:50:20Z">2019-03-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-09 03:45:46" itemprop="dateModified" datetime="2020-05-09T03:45:46Z">2020-05-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书/" itemprop="url" rel="index"><span itemprop="name">读书</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书/Clean-Architecture/" itemprop="url" rel="index"><span itemprop="name">Clean Architecture</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="什么是模块？"><a href="#什么是模块？" class="headerlink" title="什么是模块？"></a>什么是模块？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Components are the units of deployment. </span><br><span class="line">They are the smallest entities that can be deployed as part of a system.</span><br></pre></td></tr></table></figure>
-<p>模块就是可部署的最小单位。不同的模块组合起来构成一个系统。</p>
-<p>设计优良的模块可以做到<strong>独立的部署和独立的开发</strong>。</p>
-<h2 id="模块聚合-Components-Cohesion"><a href="#模块聚合-Components-Cohesion" class="headerlink" title="模块聚合(Components Cohesion)"></a>模块聚合(Components Cohesion)</h2><p>那么如何决定一个类应该属于哪个模块呢？</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/clean-architecture/clean-architecture-part3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://sourberrycat.com/clean-architecture/clean-architecture-part2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="酸梅猫">
-      <meta itemprop="description" content="一只西雅图的程序员">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="酸梅猫的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/clean-architecture/clean-architecture-part2/" class="post-title-link" itemprop="url">SOLID 设计原则 - Clean Architecture Part 2</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-19 14:11:32" itemprop="dateCreated datePublished" datetime="2019-03-19T14:11:32Z">2019-03-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-09 03:45:46" itemprop="dateModified" datetime="2020-05-09T03:45:46Z">2020-05-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书/" itemprop="url" rel="index"><span itemprop="name">读书</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书/Clean-Architecture/" itemprop="url" rel="index"><span itemprop="name">Clean Architecture</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>这次我们将简单学习一下著名的SLOLID设计原则。</p>
-<h2 id="单一责任原则-The-Single-Responsibility-Principle"><a href="#单一责任原则-The-Single-Responsibility-Principle" class="headerlink" title="单一责任原则(The Single Responsibility Principle)"></a>单一责任原则(The Single Responsibility Principle)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“A module should have one, and only one, reason to change.”</span><br></pre></td></tr></table></figure>
-<p>Never change a same source file for different reasons, for different purpose.<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/clean-architecture/clean-architecture-part2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2297,7 +2251,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2326,7 +2280,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2357,7 +2317,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2641,7 +2613,7 @@
       else if (!isArchive && !isCategory && !isTag) { //is index page
         var titles = [] //array to titles
 
-        var postsstr = 'titles.push("测试的设计 - Clean Architecture Part 11");titles.push("难测对象模式 - Clean Architecture Part 10");titles.push("干净的构架 - Clean Architecture Part 9");titles.push("实体与用例 - Clean Architecture Part 8");titles.push("界限：插件构架 - Clean Architecture Part 7");titles.push("解耦 - Clean Architecture Part 6");titles.push("软件构架 - Clean Architecture Part 5");titles.push("模块耦合的三原则 - Clean Architecture Part 4");titles.push("模块聚合的三原则 - Clean Architecture Part 3");titles.push("SOLID 设计原则 - Clean Architecture Part 2");' //if you have a better way to get titles of posts, please change it
+        var postsstr = 'titles.push("阻断与非阻断I/O");titles.push("进程，线程和协程");titles.push("Elastic Search 搜索");titles.push("测试的设计 - Clean Architecture Part 11");titles.push("难测对象模式 - Clean Architecture Part 10");titles.push("干净的构架 - Clean Architecture Part 9");titles.push("实体与用例 - Clean Architecture Part 8");titles.push("界限：插件构架 - Clean Architecture Part 7");titles.push("解耦 - Clean Architecture Part 6");titles.push("软件构架 - Clean Architecture Part 5");' //if you have a better way to get titles of posts, please change it
         eval(postsstr)
 
         var promises = titles.map(function (title) {
